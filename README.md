@@ -1,50 +1,22 @@
-# NEAR BOS Web Component ( custom element )
+# bos-keypom-webcomponent
 
-This is a Proof of Concept of embedding a NEAR BOS widget into any web application as a Web Component / Custom element.
+—> [near-bos-webcomponent](https://www.npmjs.com/package/@bbface/near-bos-webcomponent-livepeer) with [Sui](https://docs.sui.io/) and [Enoki](https://docs.enoki.mystenlabs.com/) integration , deployed to [web4](https://web4.near.page/), in order to provide a sandbox for builders wanting to create decentralized Sui apps.
 
-Just load react production react bundles into your index.html as shown below, and use the `near-social-viewer` custom element to embed the BOS widget.
+## Getting Started
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Near social</title>
-    <script defer="defer" src="/runtime.REPLACE_WITH_BUNDLE_HASH.bundle.js"></script>
-    <script defer="defer" src="/main.REPLACE_WITH_BUNDLE_HASH.bundle.js"></script></head>
-  <body>
-    <h1>NEAR BOS embeddable custom element</h1>
-    <near-social-viewer></near-social-viewer>
-  </body>
-</html>
+To run locally, install packages:
+
+```bash
+yarn install
 ```
 
-## Setup & Development
+Then, run the command:
 
-Initialize repo:
-
-```cmd
-yarn
+```bash
+yarn run dev
 ```
 
-Start development version:
-
-```cmd
-yarn start
-```
-
-Production build:
-
-```cmd
-yarn prod
-```
-
-Serve the production build:
-
-```cmd
-yarn serve prod
-```
+This will serve the widgets from `http://127.0.0.1:8080/` and start a local gateway.
 
 ## Attributes
 
