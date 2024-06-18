@@ -46,6 +46,14 @@ const config = {
         },
         hide: true,
       },
+      profile: {
+        path: "blueprints.near/widget/Profile",
+        blockHeight: "final",
+        init: {
+          name: "Profile",
+        },
+        hide: true,
+      },
     },
   },
 };

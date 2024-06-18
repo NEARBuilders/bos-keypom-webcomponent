@@ -4,9 +4,13 @@ const { Avatar } = VM.require("${config_account}/widget/components.Avatar") || {
 const { Button } = VM.require("${config_account}/widget/components.Button") || {
   Button: () => <></>,
 };
+const { href } = VM.require("devs.near/widget/lib.url") || {
+  href: () => {},
+};
+
 const MemoizedAvatar = useMemo(
-  () => <Avatar accountId={accountId} size="40px" />,
-  [accountId]
+  () => <Avatar accountId={context.accountId} size="40px" />,
+  [context.accountId]
 );
 
 const Container = styled.div`
@@ -55,6 +59,32 @@ const Container = styled.div`
   }
 `;
 
+const [content, setContent] = useState("");
+const [posted, setPosted] = useState(false);
+
+const onSubmit = () => {
+  const data = {
+    post: {
+      main: JSON.stringify({ type: "md", text: content }),
+    },
+    index: {
+      post: JSON.stringify({
+        key: "main",
+        value: {
+          type: "md",
+        },
+      }),
+    },
+  };
+
+  Social.set(data, {
+    force: true,
+    onCommit: () => {
+      setPosted(true);
+    },
+  });
+};
+
 return (
   <Container>
     <div className="header">
@@ -66,10 +96,7 @@ return (
       </p>
     </div>
     <div className="content">
-      <div className="avatar">
-        {/* <Avatar accountId={accountId} size={40} /> */}
-        {MemoizedAvatar}
-      </div>
+      <div className="avatar">{MemoizedAvatar}</div>
       <div className="input">
         <textarea
           type="text"
@@ -84,11 +111,30 @@ return (
             paddingRight: "0px",
             border: "none",
           }}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
         ></textarea>
       </div>
     </div>
-    <Button variant="primary" onClick={onSubmit}>
-      post
-    </Button>
+    {posted ? (
+      <Button
+        linkClassName="p-2 border align-self-stretch text-center"
+        href={href({
+          widgetSrc: "${config_account}/widget/Index",
+          params: {
+            page: "profile",
+          },
+        })}
+        style={{
+          borderRadius: "12px",
+        }}
+      >
+        go to profile
+      </Button>
+    ) : (
+      <Button variant="primary" onClick={onSubmit}>
+        post
+      </Button>
+    )}
   </Container>
 );

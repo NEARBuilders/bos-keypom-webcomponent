@@ -2,6 +2,8 @@ const { Button } = VM.require("${config_account}/widget/components.Button") || {
   Button: () => <></>,
 };
 
+const tab = props.tab || "profile";
+
 const pages = [
   "${config_account}/widget/page.profileInfo.Profile",
   "${config_account}/widget/page.profileInfo.Avatar",
@@ -10,7 +12,12 @@ const pages = [
   "${config_account}/widget/page.profileInfo.Post",
 ];
 
-const [currentPage, setCurrentPage] = useState(pages[1]);
+// get current tab
+const currentTab = pages.find((page) =>
+  page.toLocaleLowerCase().includes(tab.toLowerCase())
+);
+
+const [currentPage, setCurrentPage] = useState(currentTab);
 const toggleNextPage = useCallback(() => {
   const nextPage = pages[pages.indexOf(currentPage) + 1];
   if (nextPage) {

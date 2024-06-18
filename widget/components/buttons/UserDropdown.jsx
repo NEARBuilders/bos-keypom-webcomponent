@@ -26,8 +26,8 @@ const [dropdown, setDropdown] = useState(false);
 const toggleDropdown = useCallback(() => setDropdown((prev) => !prev), []);
 
 const MemoizedAvatar = useMemo(
-  () => <Avatar accountId={accountId} size="24px" />,
-  [accountId]
+  () => <Avatar accountId={context.accountId} size="24px" />,
+  [context.accountId]
 );
 
 const DropdownContent = styled.div`
