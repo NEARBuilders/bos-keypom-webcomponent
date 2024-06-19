@@ -16,7 +16,7 @@ const Container = styled.div`
   .top {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    /* align-items: stretch; */
     justify-content: center;
     gap: 8px;
     .heading {
@@ -53,13 +53,12 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: 442px;
+    /* width: 442px; */
     Button {
       padding: 8px 20px;
       height: 36px;
       color: var(--BG-Main, #fff);
-
-      /* Text/M - 16px/Medium */
+      width: 442px;
       font-family: Poppins;
       font-size: 16px;
       font-style: normal;
@@ -86,7 +85,7 @@ const Index = () => (
             page: "onboarding",
           },
         })}
-        style={{ width: "100%", background: "#000", borderRadius: "12px" }}
+        style={{ background: "#000", borderRadius: "12px" }}
       >
         continue
       </Button>
