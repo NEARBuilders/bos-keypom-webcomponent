@@ -10,6 +10,7 @@ const MemoizedAvatar = useMemo(
 );
 
 const Container = styled.div`
+  max-width: 442px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,22 +57,11 @@ const Container = styled.div`
         display: flex; /* Add this line to ensure proper flex layout */
         align-items: center;
         flex: 1;
-
-        input {
-          &::placeholder {
-            /* Correcting syntax to use & for nesting */
-            color: var(--Blue-Light-11, var(--Blue-11, #006adc));
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 500;
-          }
-
-          &:focus-visible {
-            /* Correcting syntax to use & for nesting */
-            outline: none;
-            border: none;
-            box-shadow: none;
-          }
+        span {
+          color: var(--Blue-Light-11, var(--Blue-11, #006adc));
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
         }
       }
     }
@@ -129,17 +119,9 @@ return (
             </defs>
           </svg>
         </div>
+
         <div className="input-field">
-          <input
-            type="text"
-            class="form-group"
-            id="post"
-            placeholder="alexsmith.near.page"
-            style={{
-              border: "none",
-              background: "var(--Gray-2, #f8f8f8)",
-            }}
-          ></input>
+          <span>{context.accountId}page</span>
         </div>
       </div>
       <Button

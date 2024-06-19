@@ -14,6 +14,7 @@ const MemoizedAvatar = useMemo(
 );
 
 const Container = styled.div`
+  max-width: 442px;
   display: flex;
   flex-direction: column;
   align-items: center;

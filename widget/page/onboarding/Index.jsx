@@ -32,11 +32,12 @@ const togglePreviousPage = useCallback(() => {
 }, [currentPage]);
 
 const Container = styled.div`
-  max-width: 442px;
   margin: 24px auto;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  align-items: center;
+  justify-content: center;
   gap: 24px;
 `;
 
