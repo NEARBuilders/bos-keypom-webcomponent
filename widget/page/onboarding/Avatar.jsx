@@ -1,5 +1,13 @@
+const { Avatar } = VM.require("${config_account}/widget/components.Avatar") || {
+  Avatar: () => <></>,
+};
+
 const { Button } = VM.require("${config_account}/widget/components.Button") || {
   Button: () => <></>,
+};
+
+const { Image } = VM.require("${config_account}/widget/icons") || {
+  Image: () => <></>,
 };
 
 const Container = styled.div`
@@ -47,6 +55,7 @@ const onSubmit = () => {
     Social.set(
       { profile: data },
       {
+        force: true,
         onCommit: () => {
           props.toggleNextPage();
         },
@@ -55,32 +64,93 @@ const onSubmit = () => {
   }
 };
 
+const CoverPreview = ({ img }) => {
+  return img ? (
+    <Widget
+      src="mob.near/widget/Image"
+      props={{
+        image: img,
+        style: {
+          width: "100%",
+          height: "80px",
+          borderRadius: "8px",
+          objectFit: "cover",
+        },
+      }}
+    />
+  ) : (
+    <div
+      className="d-flex align-items-center justify-content-center"
+      style={{
+        width: "100%",
+        height: "80px",
+        background: "#EDEDED",
+        borderRadius: "8px",
+      }}
+    >
+      <Image />
+    </div>
+  );
+};
+
+const AvatarPreview = ({ img }) => {
+  return img ? (
+    <Widget
+      src="mob.near/widget/Image"
+      props={{
+        image: img,
+        style: {
+          width: "48px",
+          height: "48px",
+          borderRadius: "50%",
+          objectFit: "cover",
+        },
+      }}
+    />
+  ) : (
+    <div
+      className="d-flex align-items-center justify-content-center"
+      style={{
+        width: "48px",
+        height: "48px",
+        background: "#EDEDED",
+        borderRadius: "50%",
+      }}
+    >
+      <Avatar />
+    </div>
+  );
+};
+
 return (
   <Container>
     <h1 className="heading">Upload Photo</h1>
     <div>
       <label>Profile picture</label>
       <Widget
-        src="${config_account}/widget/components.profileInfo.AvatarUploader"
+        src="${config_account}/widget/components.onboarding.ImageUploader"
         props={{
           onChange: (e) =>
             setImages({
               ...images,
               image: e,
             }),
+          preview: AvatarPreview,
         }}
       />
     </div>
     <div>
       <label>Cover image</label>
       <Widget
-        src="${config_account}/widget/components.profileInfo.CoverUploader"
+        src="${config_account}/widget/components.onboarding.ImageUploader"
         props={{
           onChange: (e) =>
             setImages({
               ...images,
               backgroundImage: e,
             }),
+          preview: CoverPreview,
+          layout: "column",
         }}
       />
     </div>

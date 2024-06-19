@@ -1,5 +1,4 @@
-const { Image, Refresh } = VM.require("${config_account}/widget/icons") || {
-  Image: () => <></>,
+const { Refresh } = VM.require("${config_account}/widget/icons") || {
   Refresh: () => <></>,
 };
 
@@ -7,12 +6,9 @@ const { Button } = VM.require("${config_account}/widget/components.Button") || {
   Button: () => <></>,
 };
 
-const { Avatar } = VM.require("${config_account}/widget/components.Avatar") || {
-  Avatar: () => <></>,
-};
-
 const image = props.image;
 const onChange = props.onChange;
+const preview = props.preview;
 
 const Tab = {
   Upload: "Upload",
@@ -124,7 +120,7 @@ const MutedText = styled.span`
   letter-spacing: -0.12px;
 `;
 
-const CoverUploader = ({ setImage }) => {
+const Uploader = ({ setImage }) => {
   const [img, setImg] = useState(null);
   const [msg, setMsg] = useState(
     <>
@@ -160,31 +156,39 @@ const CoverUploader = ({ setImage }) => {
       });
   };
 
+  const DefaultPreview = ({ img }) => {
+    return img ? (
+      <img
+        src={`https://ipfs.near.social/ipfs/${img}`}
+        style={{
+          width: "48px",
+          height: "48px",
+          borderRadius: "8px",
+          objectFit: "cover",
+        }}
+      />
+    ) : (
+      <div
+        className="d-flex align-items-center justify-content-center"
+        style={{
+          width: "48px",
+          height: "48px",
+          borderRadius: 8,
+          backgroundColor: "#e2e2e2",
+        }}
+      >
+        <i className="bi bi-image"></i>
+      </div>
+    );
+  };
+
   return (
-    <div className="d-flex flex-column gap-3">
-      {img ? (
-        <img
-          src={`https://ipfs.near.social/ipfs/${img}`}
-          style={{
-            width: "100%",
-            height: "80px",
-            borderRadius: "8px",
-            objectFit: "cover",
-          }}
-        />
-      ) : (
-        <div
-          className="d-flex align-items-center justify-content-center"
-          style={{
-            width: "100%",
-            height: "80px",
-            background: "#EDEDED",
-            borderRadius: "8px",
-          }}
-        >
-          <Image />
-        </div>
-      )}
+    <div
+      className={`d-flex gap-3 ${
+        props.layout === "column" ? "flex-column" : ""
+      }`}
+    >
+      {preview ? <preview img={img} /> : <DefaultPreview img={img} />}
       <div className="d-flex flex-column gap-2">
         <MutedText>
           PNG or JPEG files at least 400x400px, less than 100MB
@@ -267,7 +271,7 @@ return (
       }}
     >
       <div className={`${state.tab === Tab.Upload ? "" : "visually-hidden"}`}>
-        <CoverUploader />
+        <Uploader />
       </div>
       <div className={`${state.tab === Tab.NFT ? "" : "visually-hidden"}`}>
         NFT contract

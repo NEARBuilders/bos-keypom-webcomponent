@@ -14,10 +14,9 @@ const Container = styled.div`
   height: 100vh;
   gap: 24px;
   .top {
-    width: 442px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: 8px;
     .heading {
@@ -84,7 +83,7 @@ const Index = () => (
         href={href({
           widgetSrc: "${config_account}/widget/Index",
           params: {
-            page: "profileInfo",
+            page: "onboarding",
           },
         })}
         style={{ width: "100%", background: "#000", borderRadius: "12px" }}

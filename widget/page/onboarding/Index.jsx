@@ -5,11 +5,11 @@ const { Button } = VM.require("${config_account}/widget/components.Button") || {
 const tab = props.tab || "profile";
 
 const pages = [
-  "${config_account}/widget/page.profileInfo.Profile",
-  "${config_account}/widget/page.profileInfo.Avatar",
-  "${config_account}/widget/page.profileInfo.Theme",
-  "${config_account}/widget/page.profileInfo.Deploy",
-  "${config_account}/widget/page.profileInfo.Post",
+  "${config_account}/widget/page.onboarding.Profile",
+  "${config_account}/widget/page.onboarding.Avatar",
+  "${config_account}/widget/page.onboarding.Theme",
+  "${config_account}/widget/page.onboarding.Deploy",
+  "${config_account}/widget/page.onboarding.Post",
 ];
 
 // get current tab
@@ -43,7 +43,7 @@ const Container = styled.div`
 return (
   <Container>
     <Widget
-      src="${config_account}/widget/components.profileInfo.PageIndicator"
+      src="${config_account}/widget/components.onboarding.PageIndicator"
       loading=""
       props={{
         page: currentPage,

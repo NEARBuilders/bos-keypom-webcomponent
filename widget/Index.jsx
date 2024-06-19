@@ -22,13 +22,6 @@ const config = {
   router: {
     param: "page",
     routes: {
-      home: {
-        path: "${config_account}/widget/page.home.Index",
-        blockHeight: "final",
-        init: {
-          name: "Home",
-        },
-      },
       welcome: {
         path: "${config_account}/widget/page.welcome.Index",
         blockHeight: "final",
@@ -38,11 +31,11 @@ const config = {
         default: true,
         hide: true,
       },
-      profileInfo: {
-        path: "${config_account}/widget/page.profileInfo.Index",
+      onboarding: {
+        path: "${config_account}/widget/page.onboarding.Index",
         blockHeight: "final",
         init: {
-          name: "Profile Info",
+          name: "Onboarding",
         },
         hide: true,
       },
